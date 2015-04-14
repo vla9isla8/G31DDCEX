@@ -170,7 +170,12 @@ namespace G31DDCExample
             {
                 DDC2PreprocessedStreamEventArgs anEventArgs = (DDC2PreprocessedStreamEventArgs)theEventArgs;
 
-                textBoxSignalLevel.Text = (10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0)) /* Conversion to dBm */).ToString("N1") + " dBm";
+                double aValue = 10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0));
+                
+                textBoxSignalLevel.Text = aValue.ToString("N1") + " dBm";
+
+                progressBarAudioLevel.Value = (int)(aValue + 120)*10;
+            
             }
             // Else, if this method was called from API thread, call it again from the same thread 
             else
@@ -202,7 +207,7 @@ namespace G31DDCExample
                 {
                     aValue = (int)Math.Max(aValue, 100 * Math.Abs(anEventArgs.buffer[anIx]));
                 }
-                progressBarAudioLevel.Value = aValue < progressBarAudioLevel.Maximum ? aValue : progressBarAudioLevel.Maximum; 
+                //progressBarAudioLevel.Value = aValue < progressBarAudioLevel.Maximum ? aValue : progressBarAudioLevel.Maximum; 
 
                 // Write to waveOut
                 waveOutHandler.Write(anEventArgs.buffer, anEventArgs.numberOfSamples);

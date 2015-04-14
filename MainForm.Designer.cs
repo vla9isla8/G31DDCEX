@@ -59,8 +59,8 @@
             // 
             // panelMain
             // 
-            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMain.Controls.Add(this.groupBoxAudioLevel);
             this.panelMain.Controls.Add(this.groupBoxSignalLevel);
             this.panelMain.Controls.Add(this.groupBoxFrequency);
@@ -89,7 +89,7 @@
             // progressBarAudioLevel
             // 
             this.progressBarAudioLevel.Location = new System.Drawing.Point(6, 19);
-            this.progressBarAudioLevel.Maximum = 30;
+            this.progressBarAudioLevel.Maximum = 900;
             this.progressBarAudioLevel.Name = "progressBarAudioLevel";
             this.progressBarAudioLevel.Size = new System.Drawing.Size(84, 23);
             this.progressBarAudioLevel.TabIndex = 8;
@@ -106,9 +106,9 @@
             // 
             // textBoxSignalLevel
             // 
-            this.textBoxSignalLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSignalLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxSignalLevel.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxSignalLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxSignalLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -121,8 +121,8 @@
             // 
             // groupBoxFrequency
             // 
-            this.groupBoxFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxFrequency.Controls.Add(this.labelFrequencyUnit);
             this.groupBoxFrequency.Controls.Add(this.numericUpDownFrequency);
             this.groupBoxFrequency.Controls.Add(this.trackBarFrequency);
@@ -155,8 +155,8 @@
             // 
             // trackBarFrequency
             // 
-            this.trackBarFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.trackBarFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBarFrequency.Enabled = false;
             this.trackBarFrequency.Location = new System.Drawing.Point(6, 63);
             this.trackBarFrequency.Maximum = 0;
@@ -168,8 +168,8 @@
             // 
             // textBoxFrequencyRange
             // 
-            this.textBoxFrequencyRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFrequencyRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFrequencyRange.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxFrequencyRange.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxFrequencyRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -181,8 +181,8 @@
             // 
             // textBoxSerialNumber
             // 
-            this.textBoxSerialNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSerialNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxSerialNumber.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxSerialNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -194,8 +194,8 @@
             // 
             // textBoxInterface
             // 
-            this.textBoxInterface.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxInterface.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxInterface.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxInterface.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxInterface.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -280,8 +280,8 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "G31DDCExample";
-            this.Load += new System.EventHandler(this.OnMainFormLoad);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnMainFormClosing);
+            this.Load += new System.EventHandler(this.OnMainFormLoad);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
             this.groupBoxAudioLevel.ResumeLayout(false);
