@@ -224,5 +224,15 @@ namespace G31DDCExample
         }
 
         #endregion
+
+        private void groupBoxAudioLevel_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxSignalLevel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.groupBoxAudioLevel = new System.Windows.Forms.GroupBox();
             this.progressBarAudioLevel = new System.Windows.Forms.ProgressBar();
             this.groupBoxSignalLevel = new System.Windows.Forms.GroupBox();
             this.textBoxSignalLevel = new System.Windows.Forms.TextBox();
@@ -49,7 +48,6 @@
             this.timerConnection = new System.Windows.Forms.Timer(this.components);
             this.buttonConnection = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
-            this.groupBoxAudioLevel.SuspendLayout();
             this.groupBoxSignalLevel.SuspendLayout();
             this.groupBoxFrequency.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrequency)).BeginInit();
@@ -61,9 +59,6 @@
             // 
             this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMain.Controls.Add(this.groupBoxAudioLevel);
-            this.panelMain.Controls.Add(this.groupBoxSignalLevel);
-            this.panelMain.Controls.Add(this.groupBoxFrequency);
             this.panelMain.Controls.Add(this.textBoxFrequencyRange);
             this.panelMain.Controls.Add(this.textBoxSerialNumber);
             this.panelMain.Controls.Add(this.textBoxInterface);
@@ -73,51 +68,47 @@
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.panelMain.Location = new System.Drawing.Point(12, 12);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(333, 219);
+            this.panelMain.Size = new System.Drawing.Size(488, 88);
             this.panelMain.TabIndex = 0;
-            // 
-            // groupBoxAudioLevel
-            // 
-            this.groupBoxAudioLevel.Controls.Add(this.progressBarAudioLevel);
-            this.groupBoxAudioLevel.Location = new System.Drawing.Point(233, 158);
-            this.groupBoxAudioLevel.Name = "groupBoxAudioLevel";
-            this.groupBoxAudioLevel.Size = new System.Drawing.Size(96, 51);
-            this.groupBoxAudioLevel.TabIndex = 9;
-            this.groupBoxAudioLevel.TabStop = false;
-            this.groupBoxAudioLevel.Text = "Audio level";
             // 
             // progressBarAudioLevel
             // 
-            this.progressBarAudioLevel.Location = new System.Drawing.Point(6, 19);
+            this.progressBarAudioLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressBarAudioLevel.Location = new System.Drawing.Point(6, 48);
             this.progressBarAudioLevel.Maximum = 900;
             this.progressBarAudioLevel.Name = "progressBarAudioLevel";
-            this.progressBarAudioLevel.Size = new System.Drawing.Size(84, 23);
+            this.progressBarAudioLevel.Size = new System.Drawing.Size(476, 22);
+            this.progressBarAudioLevel.Step = 1;
             this.progressBarAudioLevel.TabIndex = 8;
             // 
             // groupBoxSignalLevel
             // 
+            this.groupBoxSignalLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxSignalLevel.Controls.Add(this.progressBarAudioLevel);
             this.groupBoxSignalLevel.Controls.Add(this.textBoxSignalLevel);
-            this.groupBoxSignalLevel.Location = new System.Drawing.Point(233, 92);
+            this.groupBoxSignalLevel.Location = new System.Drawing.Point(12, 226);
+            this.groupBoxSignalLevel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.groupBoxSignalLevel.Name = "groupBoxSignalLevel";
-            this.groupBoxSignalLevel.Size = new System.Drawing.Size(96, 60);
+            this.groupBoxSignalLevel.Size = new System.Drawing.Size(488, 78);
             this.groupBoxSignalLevel.TabIndex = 7;
             this.groupBoxSignalLevel.TabStop = false;
             this.groupBoxSignalLevel.Text = "Signal level";
             // 
             // textBoxSignalLevel
             // 
-            this.textBoxSignalLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSignalLevel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.textBoxSignalLevel.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxSignalLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxSignalLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxSignalLevel.Location = new System.Drawing.Point(6, 22);
+            this.textBoxSignalLevel.Location = new System.Drawing.Point(187, 19);
             this.textBoxSignalLevel.Name = "textBoxSignalLevel";
             this.textBoxSignalLevel.ReadOnly = true;
-            this.textBoxSignalLevel.Size = new System.Drawing.Size(84, 23);
+            this.textBoxSignalLevel.Size = new System.Drawing.Size(107, 23);
             this.textBoxSignalLevel.TabIndex = 2;
             this.textBoxSignalLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxSignalLevel.TextChanged += new System.EventHandler(this.textBoxSignalLevel_TextChanged);
             // 
             // groupBoxFrequency
             // 
@@ -127,9 +118,9 @@
             this.groupBoxFrequency.Controls.Add(this.numericUpDownFrequency);
             this.groupBoxFrequency.Controls.Add(this.trackBarFrequency);
             this.groupBoxFrequency.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupBoxFrequency.Location = new System.Drawing.Point(3, 92);
+            this.groupBoxFrequency.Location = new System.Drawing.Point(12, 106);
             this.groupBoxFrequency.Name = "groupBoxFrequency";
-            this.groupBoxFrequency.Size = new System.Drawing.Size(224, 117);
+            this.groupBoxFrequency.Size = new System.Drawing.Size(488, 114);
             this.groupBoxFrequency.TabIndex = 6;
             this.groupBoxFrequency.TabStop = false;
             this.groupBoxFrequency.Text = "Frequency";
@@ -158,10 +149,10 @@
             this.trackBarFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBarFrequency.Enabled = false;
-            this.trackBarFrequency.Location = new System.Drawing.Point(6, 63);
+            this.trackBarFrequency.Location = new System.Drawing.Point(6, 61);
             this.trackBarFrequency.Maximum = 0;
             this.trackBarFrequency.Name = "trackBarFrequency";
-            this.trackBarFrequency.Size = new System.Drawing.Size(212, 45);
+            this.trackBarFrequency.Size = new System.Drawing.Size(476, 45);
             this.trackBarFrequency.TabIndex = 0;
             this.trackBarFrequency.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarFrequency.ValueChanged += new System.EventHandler(this.OnTrackBarFrequencyValueChanged);
@@ -175,7 +166,7 @@
             this.textBoxFrequencyRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxFrequencyRange.Location = new System.Drawing.Point(114, 59);
             this.textBoxFrequencyRange.Name = "textBoxFrequencyRange";
-            this.textBoxFrequencyRange.Size = new System.Drawing.Size(215, 20);
+            this.textBoxFrequencyRange.Size = new System.Drawing.Size(370, 20);
             this.textBoxFrequencyRange.TabIndex = 5;
             this.textBoxFrequencyRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -188,7 +179,7 @@
             this.textBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxSerialNumber.Location = new System.Drawing.Point(114, 3);
             this.textBoxSerialNumber.Name = "textBoxSerialNumber";
-            this.textBoxSerialNumber.Size = new System.Drawing.Size(216, 20);
+            this.textBoxSerialNumber.Size = new System.Drawing.Size(371, 20);
             this.textBoxSerialNumber.TabIndex = 4;
             this.textBoxSerialNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -202,7 +193,7 @@
             this.textBoxInterface.Location = new System.Drawing.Point(114, 31);
             this.textBoxInterface.Name = "textBoxInterface";
             this.textBoxInterface.ReadOnly = true;
-            this.textBoxInterface.Size = new System.Drawing.Size(216, 20);
+            this.textBoxInterface.Size = new System.Drawing.Size(371, 20);
             this.textBoxInterface.TabIndex = 3;
             this.textBoxInterface.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -240,9 +231,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 266);
+            this.statusStrip.Location = new System.Drawing.Point(0, 344);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(357, 22);
+            this.statusStrip.Size = new System.Drawing.Size(512, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -259,7 +250,7 @@
             // buttonConnection
             // 
             this.buttonConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonConnection.Location = new System.Drawing.Point(251, 237);
+            this.buttonConnection.Location = new System.Drawing.Point(409, 318);
             this.buttonConnection.Name = "buttonConnection";
             this.buttonConnection.Size = new System.Drawing.Size(91, 23);
             this.buttonConnection.TabIndex = 2;
@@ -271,9 +262,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 288);
-            this.Controls.Add(this.buttonConnection);
+            this.ClientSize = new System.Drawing.Size(512, 366);
+            this.Controls.Add(this.groupBoxFrequency);
+            this.Controls.Add(this.groupBoxSignalLevel);
             this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.buttonConnection);
             this.Controls.Add(this.panelMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -284,7 +277,6 @@
             this.Load += new System.EventHandler(this.OnMainFormLoad);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
-            this.groupBoxAudioLevel.ResumeLayout(false);
             this.groupBoxSignalLevel.ResumeLayout(false);
             this.groupBoxSignalLevel.PerformLayout();
             this.groupBoxFrequency.ResumeLayout(false);
@@ -318,7 +310,6 @@
         private System.Windows.Forms.ProgressBar progressBarAudioLevel;
         private System.Windows.Forms.NumericUpDown numericUpDownFrequency;
         private System.Windows.Forms.Label labelFrequencyUnit;
-        private System.Windows.Forms.GroupBox groupBoxAudioLevel;
     }
 }
 
