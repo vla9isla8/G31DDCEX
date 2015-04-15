@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Diagnostics;
-
 using G31DDCAPIWrapperSpace;
 using System.IO;
 
@@ -19,9 +18,8 @@ namespace G31DDCExample
     {
         #region Members
 
-        private Wrapper wrapper = new Wrapper();
-        private WaveOutHandler waveOutHandler = new WaveOutHandler();
-
+        private Wrapper wrapper                 =   new Wrapper();
+        private WaveOutHandler waveOutHandler   =   new WaveOutHandler();
         private delegate void WrapperDD2PreprocessedStreamCallbackHandler(object sender, DDC2PreprocessedStreamEventArgs eventArgs);
         private delegate void WrapperAudioStreamCallbackHandler(object sender, AudioStreamEventArgs eventArgs);
 
@@ -82,7 +80,8 @@ namespace G31DDCExample
 
                 buttonConnection.Enabled = false;
 
-                panelMain.Enabled = true;
+                groupBoxFrequency.Enabled = groupBoxSignalLevel.Enabled = SignalDataGroupBox.Enabled = true;
+                groupBoxFrequency.Visible = groupBoxSignalLevel.Visible = SignalDataGroupBox.Visible = true;
 
                 timerConnection.Start();
             }
@@ -100,12 +99,23 @@ namespace G31DDCExample
                 progressBarAudioLevel.Value = 0;
                 numericUpDownFrequency.Value = numericUpDownFrequency.Minimum = 0;
 
+                groupBoxFrequency.Enabled = groupBoxSignalLevel.Enabled = SignalDataGroupBox.Enabled = false;
+                groupBoxFrequency.Visible = groupBoxSignalLevel.Visible = SignalDataGroupBox.Visible = false;
+
                 buttonConnection.Enabled = true;
 
-                panelMain.Enabled = false;
             }
 
             trackBarFrequency.Enabled = panelMain.Enabled;
+        }
+
+        private static void SaveFile(float[] fileSamples, string fileName)
+        {
+            byte[] fileBites = new byte[fileSamples.Length * 4];
+            Buffer.BlockCopy(fileSamples, 0, fileBites, 0, fileBites.Length);
+            FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite);
+            fileStream.Write(fileBites, 0, fileBites.Length);
+            fileStream.Close();
         }
 
         #endregion
@@ -159,10 +169,14 @@ namespace G31DDCExample
         {
             trackBarFrequency.Value = (int)numericUpDownFrequency.Value;
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         #endregion
 
-        #region Wrapper Event Handlers        
+        #region Wrapper Event Handlers
         
         private void OnWrapperDDC2PreprocessedStreamReceived(object theSender, EventArgs theEventArgs)
         {
@@ -175,7 +189,14 @@ namespace G31DDCExample
 
                 float[] buffer   =   anEventArgs.buffer;
 
-                SaveFile(buffer, "/"+DateTime.Today.Date.ToString()+".txt");
+                textBoxIQSample.Text = "";
+
+                foreach (float data in buffer)
+                {
+                    textBoxIQSample.Text += String.Format("I:%s Q:%s\n", data.ToString().Split(new Char[] {' ', ','})[0], data.ToString().Split(new Char[] {' ', ','})[1]);
+                }
+                
+                //SaveFile(buffer, "/"+DateTime.Today.Date.ToString()+".txt");
 
                 double aValue = 10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0));
                 
@@ -232,13 +253,5 @@ namespace G31DDCExample
 
         #endregion
 
-        public static void SaveFile(float[] fileSamples, string fileName)
-        {
-            byte[] fileBites = new byte[fileSamples.Length * 4];
-            Buffer.BlockCopy(fileSamples, 0, fileBites, 0, fileBites.Length);
-            FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite);
-            fileStream.Write(fileBites, 0, fileBites.Length);
-            fileStream.Close();
-        }
     }
 }
