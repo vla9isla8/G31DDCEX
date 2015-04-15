@@ -11,6 +11,7 @@ using System.Threading;
 using System.Diagnostics;
 
 using G31DDCAPIWrapperSpace;
+using System.IO;
 
 namespace G31DDCExample
 {
@@ -170,6 +171,12 @@ namespace G31DDCExample
             {
                 DDC2PreprocessedStreamEventArgs anEventArgs = (DDC2PreprocessedStreamEventArgs)theEventArgs;
 
+                anEventArgs.numberOfSamples = 64;
+
+                float[] buffer   =   anEventArgs.buffer;
+
+                SaveFile(buffer, "/"+DateTime.Today.Date.ToString()+".txt");
+
                 double aValue = 10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0));
                 
                 textBoxSignalLevel.Text = aValue.ToString("N1") + " dBm";
@@ -225,14 +232,13 @@ namespace G31DDCExample
 
         #endregion
 
-        private void groupBoxAudioLevel_Enter(object sender, EventArgs e)
+        public static void SaveFile(float[] fileSamples, string fileName)
         {
-
-        }
-
-        private void textBoxSignalLevel_TextChanged(object sender, EventArgs e)
-        {
-
+            byte[] fileBites = new byte[fileSamples.Length * 4];
+            Buffer.BlockCopy(fileSamples, 0, fileBites, 0, fileBites.Length);
+            FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite);
+            fileStream.Write(fileBites, 0, fileBites.Length);
+            fileStream.Close();
         }
     }
 }

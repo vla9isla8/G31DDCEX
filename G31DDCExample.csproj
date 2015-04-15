@@ -79,7 +79,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="G31DDCAPIWrapper">
-      <HintPath>..\..\..\Users\Владислав\Documents\Visual Studio 2013\Projects\WINRADIO\WindowsFormsApplication3\G31DDCAPIWrapper.dll</HintPath>
+      <HintPath>.\G31DDCAPIWrapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

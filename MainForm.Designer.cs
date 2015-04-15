@@ -108,7 +108,6 @@
             this.textBoxSignalLevel.Size = new System.Drawing.Size(107, 23);
             this.textBoxSignalLevel.TabIndex = 2;
             this.textBoxSignalLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxSignalLevel.TextChanged += new System.EventHandler(this.textBoxSignalLevel_TextChanged);
             // 
             // groupBoxFrequency
             // 
