@@ -28,6 +28,9 @@ namespace G31DDCExample
         private int Loops = 1;
 
         private int compleetedLoops = 0;
+
+        private StreamWriter fileStream;
+
         #endregion
 
         #region Constructors
@@ -35,6 +38,7 @@ namespace G31DDCExample
         public MainForm()
         {
             InitializeComponent();
+            fileStream = new StreamWriter(@DateTime.Today.Day.ToString() + ".txt");
         }
 
         #endregion
@@ -114,11 +118,6 @@ namespace G31DDCExample
             trackBarFrequency.Enabled = panelMain.Enabled;
         }
 
-        private void SaveIQData(){
-            string Data = String.Join("\r\n", IQDataBuffer);
-            File.WriteAllText("@"+DateTime.Today.Date.Day.ToString()+".txt", Data);
-        }
-
         #endregion
 
         #region GUI Event Handlers
@@ -190,11 +189,17 @@ namespace G31DDCExample
 
                 IQDataBuffer   =   anEventArgs.buffer;
 
+                for (int i = 0; i < IQDataBuffer.Length;i++ )
+                {
+                    fileStream.WriteLine(IQDataBuffer[i]+";"+IQDataBuffer[++i] + "\n");
+                }
+
                 double aValue = 10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0));
                 
                 textBoxSignalLevel.Text = aValue.ToString("N1") + " dBm";
 
                 progressBarAudioLevel.Value = (int)(aValue + 120)*10;
+
             
             }
             // Else, if this method was called from API thread, call it again from the same thread 
@@ -209,11 +214,6 @@ namespace G31DDCExample
         }
 
         #endregion
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SaveIQData();
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
