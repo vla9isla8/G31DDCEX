@@ -56,8 +56,8 @@ namespace G31DDCExample
 
             // Set callback handlers
             G31DDCAPIWrapper.DDC2PreprocessedStreamCallback ddc2PreprocessedStreamCallback = OnDDC2PreprocessedStreamReceived;
-            G31DDCAPIWrapper.AudioStreamCallback audioStreamCallback = OnAudioStreamReceived;
-            apiWrapper.RegisterCallbacks(ddc2PreprocessedStreamCallback, audioStreamCallback);
+            //G31DDCAPIWrapper.AudioStreamCallback audioStreamCallback = OnAudioStreamReceived;
+            apiWrapper.RegisterCallbacks(ddc2PreprocessedStreamCallback,null);
 
             // Start example
             // Start DDC1 streaming which has to be running before StartDDC2 is called
@@ -65,7 +65,7 @@ namespace G31DDCExample
             // Start DDC2 streaming handled in example
             apiWrapper.StartDDC2(0 /* Example */, 1024 /* Example */);
             // Start audio streaming
-            apiWrapper.StartAudio(0 /* Example */, 1024 /* Example */);
+            //apiWrapper.StartAudio(0 /* Example */, 1024 /* Example */);
 
             return true;
         }

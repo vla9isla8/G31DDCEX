@@ -49,8 +49,11 @@
             this.timerConnection = new System.Windows.Forms.Timer(this.components);
             this.buttonConnection = new System.Windows.Forms.Button();
             this.SignalDataGroupBox = new System.Windows.Forms.GroupBox();
-            this.textBoxIQSample = new System.Windows.Forms.TextBox();
+            this.IQDataListBox = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.mainFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             this.groupBoxSignalLevel.SuspendLayout();
             this.groupBoxFrequency.SuspendLayout();
@@ -58,6 +61,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFrequency)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.SignalDataGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -154,7 +158,7 @@
             this.progressBarAudioLevel.Cursor = System.Windows.Forms.Cursors.Default;
             this.progressBarAudioLevel.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.progressBarAudioLevel.Location = new System.Drawing.Point(11, 52);
-            this.progressBarAudioLevel.Maximum = 900;
+            this.progressBarAudioLevel.Maximum = 1200;
             this.progressBarAudioLevel.Name = "progressBarAudioLevel";
             this.progressBarAudioLevel.Size = new System.Drawing.Size(439, 24);
             this.progressBarAudioLevel.Step = 1;
@@ -273,7 +277,7 @@
             // 
             this.buttonConnection.Location = new System.Drawing.Point(9, 508);
             this.buttonConnection.Name = "buttonConnection";
-            this.buttonConnection.Size = new System.Drawing.Size(91, 30);
+            this.buttonConnection.Size = new System.Drawing.Size(113, 30);
             this.buttonConnection.TabIndex = 2;
             this.buttonConnection.Text = "Connect";
             this.buttonConnection.UseVisualStyleBackColor = true;
@@ -283,7 +287,7 @@
             // 
             this.SignalDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SignalDataGroupBox.Controls.Add(this.textBoxIQSample);
+            this.SignalDataGroupBox.Controls.Add(this.IQDataListBox);
             this.SignalDataGroupBox.Font = new System.Drawing.Font("Lucida Sans", 8.25F);
             this.SignalDataGroupBox.Location = new System.Drawing.Point(9, 329);
             this.SignalDataGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -293,31 +297,46 @@
             this.SignalDataGroupBox.TabStop = false;
             this.SignalDataGroupBox.Text = "Signal IQ-Data";
             // 
-            // textBoxIQSample
+            // IQDataListBox
             // 
-            this.textBoxIQSample.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxIQSample.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxIQSample.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxIQSample.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxIQSample.Location = new System.Drawing.Point(6, 37);
-            this.textBoxIQSample.Multiline = true;
-            this.textBoxIQSample.Name = "textBoxIQSample";
-            this.textBoxIQSample.ReadOnly = true;
-            this.textBoxIQSample.Size = new System.Drawing.Size(450, 133);
-            this.textBoxIQSample.TabIndex = 2;
-            this.textBoxIQSample.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.IQDataListBox.FormattingEnabled = true;
+            this.IQDataListBox.ItemHeight = 14;
+            this.IQDataListBox.Location = new System.Drawing.Point(1, 19);
+            this.IQDataListBox.Name = "IQDataListBox";
+            this.IQDataListBox.Size = new System.Drawing.Size(453, 144);
+            this.IQDataListBox.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(378, 508);
+            this.button1.Location = new System.Drawing.Point(361, 508);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(91, 30);
+            this.button1.Size = new System.Drawing.Size(108, 30);
             this.button1.TabIndex = 8;
             this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(128, 508);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(114, 30);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Save I/Q-Data";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(248, 508);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 30);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Graphic";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // MainForm
             // 
@@ -325,6 +344,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(477, 563);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonConnection);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBoxFrequency);
@@ -351,7 +372,7 @@
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.SignalDataGroupBox.ResumeLayout(false);
-            this.SignalDataGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -378,9 +399,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDownFrequency;
         private System.Windows.Forms.Label labelFrequencyUnit;
         private System.Windows.Forms.GroupBox SignalDataGroupBox;
-        private System.Windows.Forms.TextBox textBoxIQSample;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripStatusLabel workTimeStatusLabel;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListBox IQDataListBox;
+        private System.Windows.Forms.BindingSource mainFormBindingSource;
+        private System.Windows.Forms.Button button3;
     }
 }
 

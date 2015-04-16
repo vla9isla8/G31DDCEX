@@ -21,8 +21,13 @@ namespace G31DDCExample
         private Wrapper wrapper                 =   new Wrapper();
         private WaveOutHandler waveOutHandler   =   new WaveOutHandler();
         private delegate void WrapperDD2PreprocessedStreamCallbackHandler(object sender, DDC2PreprocessedStreamEventArgs eventArgs);
-        private delegate void WrapperAudioStreamCallbackHandler(object sender, AudioStreamEventArgs eventArgs);
+        //private delegate void WrapperAudioStreamCallbackHandler(object sender, AudioStreamEventArgs eventArgs);
 
+        public float[] IQDataBuffer;
+
+        private int Loops = 1;
+
+        private int compleetedLoops = 0;
         #endregion
 
         #region Constructors
@@ -109,13 +114,9 @@ namespace G31DDCExample
             trackBarFrequency.Enabled = panelMain.Enabled;
         }
 
-        private static void SaveFile(float[] fileSamples, string fileName)
-        {
-            byte[] fileBites = new byte[fileSamples.Length * 4];
-            Buffer.BlockCopy(fileSamples, 0, fileBites, 0, fileBites.Length);
-            FileStream fileStream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite);
-            fileStream.Write(fileBites, 0, fileBites.Length);
-            fileStream.Close();
+        private void SaveIQData(){
+            string Data = String.Join("\r\n", IQDataBuffer);
+            File.WriteAllText("@"+DateTime.Today.Date.Day.ToString()+".txt", Data);
         }
 
         #endregion
@@ -125,7 +126,7 @@ namespace G31DDCExample
         private void OnMainFormLoad(object theSender, EventArgs theEventArgs)
         {
             wrapper.deviceDDC2PreprocessedStreamReceived += new Wrapper.DeviceDDC2PreprocessedStreamReceivedHandler(OnWrapperDDC2PreprocessedStreamReceived);
-            wrapper.deviceAudioStreamReceived += new Wrapper.DeviceAudioStreamReceivedHandler(OnWrapperAudioStreamReceived);
+            //wrapper.deviceAudioStreamReceived += new Wrapper.DeviceAudioStreamReceivedHandler(OnWrapperAudioStreamReceived);
 
             InitializeDeviceConnection();
         }
@@ -187,16 +188,7 @@ namespace G31DDCExample
 
                 anEventArgs.numberOfSamples = 64;
 
-                float[] buffer   =   anEventArgs.buffer;
-
-                textBoxIQSample.Text = "";
-
-                foreach (float data in buffer)
-                {
-                    textBoxIQSample.Text += String.Format("I:%s Q:%s\n", data.ToString().Split(new Char[] {' ', ','})[0], data.ToString().Split(new Char[] {' ', ','})[1]);
-                }
-                
-                //SaveFile(buffer, "/"+DateTime.Today.Date.ToString()+".txt");
+                IQDataBuffer   =   anEventArgs.buffer;
 
                 double aValue = 10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0));
                 
@@ -216,42 +208,23 @@ namespace G31DDCExample
             }
         }
 
-        private void OnWrapperAudioStreamReceived(object theSender, EventArgs theEventArgs)
+        #endregion
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (!waveOutHandler.isOpened)
-            {
-                return;
-            }
-
-            // If method was called from the same thread, handle received data
-            if (!InvokeRequired)
-            {
-
-                AudioStreamEventArgs anEventArgs = (AudioStreamEventArgs)theEventArgs;
-
-                // Display audio level
-                int aValue = 0;
-                for (int anIx = 0; anIx < anEventArgs.numberOfSamples; anIx++)
-                {
-                    aValue = (int)Math.Max(aValue, 100 * Math.Abs(anEventArgs.buffer[anIx]));
-                }
-                //progressBarAudioLevel.Value = aValue < progressBarAudioLevel.Maximum ? aValue : progressBarAudioLevel.Maximum; 
-
-                // Write to waveOut
-                waveOutHandler.Write(anEventArgs.buffer, anEventArgs.numberOfSamples);
-            }
-            // Else, if this method was called from API thread, call it again from the same thread 
-            else
-            {
-                // Prepare calling the method from the same thread
-                WrapperAudioStreamCallbackHandler aWrapperHandler = new WrapperAudioStreamCallbackHandler(OnWrapperAudioStreamReceived);
-                object aSender = Thread.CurrentThread;
-
-                BeginInvoke(aWrapperHandler, new object[] { aSender, theEventArgs });
-            }
+            SaveIQData();
         }
 
-        #endregion
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            graph graph = new graph(IQDataBuffer);
+            graph.Show();
+        }
 
     }
 }
