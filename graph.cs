@@ -16,11 +16,13 @@ namespace G31DDCExample
 
         public float[] IQData;
 
+        public MainForm MForm;
+
         #endregion
 
-        public graph(float[] _IQData)
+        public graph(MainForm form)
         {
-            IQData = _IQData;
+            MForm = form;
 
             InitializeComponent();
         }
@@ -32,6 +34,8 @@ namespace G31DDCExample
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+
+            IQData = MForm.BUFFER;
 
             Point[] apt = new Point[IQData.Length/2];
 

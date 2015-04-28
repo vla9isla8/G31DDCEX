@@ -25,11 +25,22 @@ namespace G31DDCExample
 
         public float[] IQDataBuffer;
 
+        public float[] BUFFER
+        {
+            get
+            {
+                return IQDataBuffer;
+            }
+        }
+
         private int Loops = 1;
 
         private int compleetedLoops = 0;
 
         private StreamWriter fileStream;
+        private Wrapper.DeviceDDC2PreprocessedStreamReceivedHandler Handler;
+        private string filepath;
+        private string fileSize;
 
         #endregion
 
@@ -38,7 +49,6 @@ namespace G31DDCExample
         public MainForm()
         {
             InitializeComponent();
-            fileStream = new StreamWriter(@DateTime.Today.Day.ToString() + ".txt");
         }
 
         #endregion
@@ -89,8 +99,8 @@ namespace G31DDCExample
 
                 buttonConnection.Enabled = false;
 
-                groupBoxFrequency.Enabled = groupBoxSignalLevel.Enabled = SignalDataGroupBox.Enabled = true;
-                groupBoxFrequency.Visible = groupBoxSignalLevel.Visible = SignalDataGroupBox.Visible = true;
+                groupBoxFrequency.Enabled = groupBoxSignalLevel.Enabled = true;
+                groupBoxFrequency.Visible = groupBoxSignalLevel.Visible = true;
 
                 timerConnection.Start();
             }
@@ -108,8 +118,8 @@ namespace G31DDCExample
                 progressBarAudioLevel.Value = 0;
                 numericUpDownFrequency.Value = numericUpDownFrequency.Minimum = 0;
 
-                groupBoxFrequency.Enabled = groupBoxSignalLevel.Enabled = SignalDataGroupBox.Enabled = false;
-                groupBoxFrequency.Visible = groupBoxSignalLevel.Visible = SignalDataGroupBox.Visible = false;
+                groupBoxFrequency.Enabled = groupBoxSignalLevel.Enabled  = false;
+                groupBoxFrequency.Visible = groupBoxSignalLevel.Visible  = false;
 
                 buttonConnection.Enabled = true;
 
@@ -158,6 +168,8 @@ namespace G31DDCExample
         private void OnTimerConnectionTick(object theSender, EventArgs theEventArgs)
         {
             HandleDeviceConnection();
+
+            label1.Text = fileSize;
         }
 
         private void OnButtonConnectionClick(object theSender, EventArgs theEventArgs)
@@ -185,14 +197,7 @@ namespace G31DDCExample
             {
                 DDC2PreprocessedStreamEventArgs anEventArgs = (DDC2PreprocessedStreamEventArgs)theEventArgs;
 
-                anEventArgs.numberOfSamples = 64;
-
                 IQDataBuffer   =   anEventArgs.buffer;
-
-                for (int i = 0; i < IQDataBuffer.Length;i++ )
-                {
-                    fileStream.WriteLine(IQDataBuffer[i]+";"+IQDataBuffer[++i] + "\n");
-                }
 
                 double aValue = 10.0 * Math.Log10(Math.Pow(anEventArgs.sLevelRms, 2) * (1000.0 / 50.0));
                 
@@ -222,9 +227,42 @@ namespace G31DDCExample
 
         private void button3_Click(object sender, EventArgs e)
         {
-            graph graph = new graph(IQDataBuffer);
+            graph graph = new graph(this);
             graph.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Handler = new Wrapper.DeviceDDC2PreprocessedStreamReceivedHandler(OnReseaveSaveToFile);
+
+            wrapper.deviceDDC2PreprocessedStreamReceived += Handler;
+
+        }
+
+        private void OnReseaveSaveToFile(object sender, EventArgs eventArgs)
+        {
+            if (fileStream == null || fileStream.BaseStream == null)
+            {
+                filepath = @DateTime.Today.Day.ToString() + ".txt";
+
+                fileStream = new StreamWriter(filepath);
+            }
+
+            for (int i = 0; i < IQDataBuffer.Length; i++)
+            {
+                fileStream.WriteLine(IQDataBuffer[i] + ";" + IQDataBuffer[++i] + "\n");
+            }
+
+            fileSize = new FileInfo(filepath).Length.ToString();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            wrapper.deviceDDC2PreprocessedStreamReceived -= Handler;
+
+            fileStream.Close();
+        }
+
 
     }
 }

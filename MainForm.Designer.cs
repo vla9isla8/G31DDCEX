@@ -48,20 +48,17 @@
             this.workTimeStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerConnection = new System.Windows.Forms.Timer(this.components);
             this.buttonConnection = new System.Windows.Forms.Button();
-            this.SignalDataGroupBox = new System.Windows.Forms.GroupBox();
-            this.IQDataListBox = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.mainFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.panelMain.SuspendLayout();
             this.groupBoxSignalLevel.SuspendLayout();
             this.groupBoxFrequency.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFrequency)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFrequency)).BeginInit();
             this.statusStrip.SuspendLayout();
-            this.SignalDataGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -77,7 +74,7 @@
             this.panelMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.panelMain.Location = new System.Drawing.Point(9, 12);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(459, 95);
+            this.panelMain.Size = new System.Drawing.Size(566, 95);
             this.panelMain.TabIndex = 0;
             // 
             // textBoxFrequencyRange
@@ -89,7 +86,7 @@
             this.textBoxFrequencyRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxFrequencyRange.Location = new System.Drawing.Point(259, 64);
             this.textBoxFrequencyRange.Name = "textBoxFrequencyRange";
-            this.textBoxFrequencyRange.Size = new System.Drawing.Size(194, 20);
+            this.textBoxFrequencyRange.Size = new System.Drawing.Size(301, 20);
             this.textBoxFrequencyRange.TabIndex = 5;
             this.textBoxFrequencyRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -102,7 +99,7 @@
             this.textBoxSerialNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxSerialNumber.Location = new System.Drawing.Point(259, 3);
             this.textBoxSerialNumber.Name = "textBoxSerialNumber";
-            this.textBoxSerialNumber.Size = new System.Drawing.Size(194, 20);
+            this.textBoxSerialNumber.Size = new System.Drawing.Size(301, 20);
             this.textBoxSerialNumber.TabIndex = 4;
             this.textBoxSerialNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -116,7 +113,7 @@
             this.textBoxInterface.Location = new System.Drawing.Point(259, 33);
             this.textBoxInterface.Name = "textBoxInterface";
             this.textBoxInterface.ReadOnly = true;
-            this.textBoxInterface.Size = new System.Drawing.Size(194, 20);
+            this.textBoxInterface.Size = new System.Drawing.Size(301, 20);
             this.textBoxInterface.TabIndex = 3;
             this.textBoxInterface.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -160,7 +157,7 @@
             this.progressBarAudioLevel.Location = new System.Drawing.Point(11, 52);
             this.progressBarAudioLevel.Maximum = 1200;
             this.progressBarAudioLevel.Name = "progressBarAudioLevel";
-            this.progressBarAudioLevel.Size = new System.Drawing.Size(439, 24);
+            this.progressBarAudioLevel.Size = new System.Drawing.Size(546, 24);
             this.progressBarAudioLevel.Step = 1;
             this.progressBarAudioLevel.TabIndex = 8;
             // 
@@ -171,10 +168,10 @@
             this.groupBoxSignalLevel.Controls.Add(this.progressBarAudioLevel);
             this.groupBoxSignalLevel.Controls.Add(this.textBoxSignalLevel);
             this.groupBoxSignalLevel.Font = new System.Drawing.Font("Lucida Sans", 8.25F);
-            this.groupBoxSignalLevel.Location = new System.Drawing.Point(9, 242);
+            this.groupBoxSignalLevel.Location = new System.Drawing.Point(9, 223);
             this.groupBoxSignalLevel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.groupBoxSignalLevel.Name = "groupBoxSignalLevel";
-            this.groupBoxSignalLevel.Size = new System.Drawing.Size(459, 84);
+            this.groupBoxSignalLevel.Size = new System.Drawing.Size(566, 84);
             this.groupBoxSignalLevel.TabIndex = 7;
             this.groupBoxSignalLevel.TabStop = false;
             this.groupBoxSignalLevel.Text = "Signal level";
@@ -201,7 +198,7 @@
             this.groupBoxFrequency.Font = new System.Drawing.Font("Lucida Sans", 8.25F);
             this.groupBoxFrequency.Location = new System.Drawing.Point(9, 113);
             this.groupBoxFrequency.Name = "groupBoxFrequency";
-            this.groupBoxFrequency.Size = new System.Drawing.Size(459, 123);
+            this.groupBoxFrequency.Size = new System.Drawing.Size(566, 104);
             this.groupBoxFrequency.TabIndex = 6;
             this.groupBoxFrequency.TabStop = false;
             this.groupBoxFrequency.Text = "Frequency";
@@ -211,7 +208,7 @@
             this.labelFrequencyUnit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFrequencyUnit.AutoSize = true;
             this.labelFrequencyUnit.Font = new System.Drawing.Font("Lucida Sans", 15F, System.Drawing.FontStyle.Bold);
-            this.labelFrequencyUnit.Location = new System.Drawing.Point(415, 33);
+            this.labelFrequencyUnit.Location = new System.Drawing.Point(522, 22);
             this.labelFrequencyUnit.Name = "labelFrequencyUnit";
             this.labelFrequencyUnit.Size = new System.Drawing.Size(38, 23);
             this.labelFrequencyUnit.TabIndex = 4;
@@ -222,9 +219,9 @@
             this.numericUpDownFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownFrequency.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.numericUpDownFrequency.Location = new System.Drawing.Point(259, 30);
+            this.numericUpDownFrequency.Location = new System.Drawing.Point(259, 19);
             this.numericUpDownFrequency.Name = "numericUpDownFrequency";
-            this.numericUpDownFrequency.Size = new System.Drawing.Size(150, 30);
+            this.numericUpDownFrequency.Size = new System.Drawing.Size(257, 30);
             this.numericUpDownFrequency.TabIndex = 3;
             this.numericUpDownFrequency.ValueChanged += new System.EventHandler(this.OnNumericUpDownFrequencyValueChanged);
             // 
@@ -233,10 +230,10 @@
             this.trackBarFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trackBarFrequency.Enabled = false;
-            this.trackBarFrequency.Location = new System.Drawing.Point(6, 66);
+            this.trackBarFrequency.Location = new System.Drawing.Point(6, 53);
             this.trackBarFrequency.Maximum = 0;
             this.trackBarFrequency.Name = "trackBarFrequency";
-            this.trackBarFrequency.Size = new System.Drawing.Size(447, 45);
+            this.trackBarFrequency.Size = new System.Drawing.Size(554, 45);
             this.trackBarFrequency.TabIndex = 0;
             this.trackBarFrequency.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBarFrequency.ValueChanged += new System.EventHandler(this.OnTrackBarFrequencyValueChanged);
@@ -247,10 +244,10 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.workTimeStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 541);
+            this.statusStrip.Location = new System.Drawing.Point(0, 392);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip.Size = new System.Drawing.Size(477, 22);
+            this.statusStrip.Size = new System.Drawing.Size(584, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -275,7 +272,8 @@
             // 
             // buttonConnection
             // 
-            this.buttonConnection.Location = new System.Drawing.Point(9, 508);
+            this.buttonConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonConnection.Location = new System.Drawing.Point(9, 359);
             this.buttonConnection.Name = "buttonConnection";
             this.buttonConnection.Size = new System.Drawing.Size(113, 30);
             this.buttonConnection.TabIndex = 2;
@@ -283,33 +281,10 @@
             this.buttonConnection.UseVisualStyleBackColor = true;
             this.buttonConnection.Click += new System.EventHandler(this.OnButtonConnectionClick);
             // 
-            // SignalDataGroupBox
-            // 
-            this.SignalDataGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SignalDataGroupBox.Controls.Add(this.IQDataListBox);
-            this.SignalDataGroupBox.Font = new System.Drawing.Font("Lucida Sans", 8.25F);
-            this.SignalDataGroupBox.Location = new System.Drawing.Point(9, 329);
-            this.SignalDataGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.SignalDataGroupBox.Name = "SignalDataGroupBox";
-            this.SignalDataGroupBox.Size = new System.Drawing.Size(460, 176);
-            this.SignalDataGroupBox.TabIndex = 7;
-            this.SignalDataGroupBox.TabStop = false;
-            this.SignalDataGroupBox.Text = "Signal IQ-Data";
-            // 
-            // IQDataListBox
-            // 
-            this.IQDataListBox.FormattingEnabled = true;
-            this.IQDataListBox.ItemHeight = 14;
-            this.IQDataListBox.Location = new System.Drawing.Point(1, 19);
-            this.IQDataListBox.Name = "IQDataListBox";
-            this.IQDataListBox.Size = new System.Drawing.Size(453, 144);
-            this.IQDataListBox.TabIndex = 1;
-            // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(361, 508);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(467, 359);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 30);
             this.button1.TabIndex = 8;
@@ -319,17 +294,19 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(128, 508);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(128, 359);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(114, 30);
             this.button2.TabIndex = 9;
             this.button2.Text = "Save I/Q-Data";
             this.button2.UseVisualStyleBackColor = true;
-            // 
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(248, 508);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(354, 359);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(107, 30);
             this.button3.TabIndex = 10;
@@ -337,18 +314,37 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 324);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 14);
+            this.label1.TabIndex = 11;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(248, 359);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 30);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Stop Write";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(477, 563);
+            this.ClientSize = new System.Drawing.Size(584, 414);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.buttonConnection);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBoxFrequency);
-            this.Controls.Add(this.SignalDataGroupBox);
             this.Controls.Add(this.groupBoxSignalLevel);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.panelMain);
@@ -370,8 +366,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBarFrequency)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
-            this.SignalDataGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.mainFormBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,13 +391,12 @@
         private System.Windows.Forms.ProgressBar progressBarAudioLevel;
         private System.Windows.Forms.NumericUpDown numericUpDownFrequency;
         private System.Windows.Forms.Label labelFrequencyUnit;
-        private System.Windows.Forms.GroupBox SignalDataGroupBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripStatusLabel workTimeStatusLabel;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListBox IQDataListBox;
-        private System.Windows.Forms.BindingSource mainFormBindingSource;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button4;
     }
 }
 
